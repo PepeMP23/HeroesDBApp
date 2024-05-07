@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">HeroesDBApp</string>
+    <string name="heroes">heroes</string>
+    <string name="welcome_user">welcome</string>
+</resources>
