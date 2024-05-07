@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.example.heroesdbapp.HeroesDBApp
+import com.example.heroesdbapp.data.HeroDb
 import com.example.heroesdbapp.data.dao.HeroDao
 import com.example.heroesdbapp.data.repositories.HeroRepositoryImpl
 import com.example.heroesdbapp.domain.models.Hero
@@ -31,13 +31,13 @@ object AppModule {
     }
 
     @Volatile
-    private var INSTANCE : HeroesDBApp? = null
+    private var INSTANCE : HeroDb? = null
 
     @Provides
     @Singleton
     fun provideBarcodeDb(
         @ApplicationContext context: Context
-    ):HeroesDBApp {
+    ):HeroDb {
         return INSTANCE  ?: synchronized(this){
             val instance = INSTANCE
             if(instance != null){
@@ -61,7 +61,7 @@ object AppModule {
                 }
                 Room.databaseBuilder(
                     context.applicationContext,
-                    HeroesDBApp::class.java, "heroes_db"
+                    HeroDb::class.java, "HeroesAppDB"
                 )
                     .addCallback(callback)
                     .build().also {
@@ -96,7 +96,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideHeroRepository(db:HeroesDBApp) : HeroRepository{
+    fun provideHeroRepository(db:HeroDb) : HeroRepository{
         return HeroRepositoryImpl(db.heroDao())
     }
 
