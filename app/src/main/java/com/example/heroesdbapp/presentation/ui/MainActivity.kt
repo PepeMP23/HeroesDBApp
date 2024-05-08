@@ -10,6 +10,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.heroesdbapp.R
+import com.example.heroesdbapp.domain.adapters.HeroAdapter
 import com.example.heroesdbapp.domain.models.Hero
 import com.example.heroesdbapp.presentation.viewmodels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -35,7 +36,7 @@ class MainActivity : AppCompatActivity() {
                 mainViewModel.state.collect{
                     Log.i("Heroes", it.heroes.toString())
                     heroRecyclerView = findViewById(R.id.heroes_recycleview)
-                    //heroRecyclerView.adapter = HeroAdapter(it.shoppingCartProducts)
+                    heroRecyclerView.adapter = HeroAdapter(it.heroes)
                     heroRecyclerView.layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.VERTICAL, false)
                 }
             }
