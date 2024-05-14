@@ -1,94 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ImageView
+        android:id="@+id/backgroundImageView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="match_parent"
+        android:src="@drawable/fondo"
+        android:scaleType="centerCrop"
+        android:alpha="0.74" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guidev1"
-            android:layout_width="wrap_content"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.05"
-            />
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guidev2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.95"
-            />
-        <LinearLayout
-            android:layout_marginTop="10dp"
-            android:id="@+id/header"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toEndOf="@id/guidev1"
-            app:layout_constraintEnd_toStartOf="@id/guidev2"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/heroes_title"
-            android:gravity="center_vertical"
             >
 
-            <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:src="@drawable/baseline_account_circle_24"
-                app:tint="@color/cyan"
-                />
-            <TextView
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidev1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/welcome_user"
-                android:textSize="30sp"
-                android:textStyle="bold"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.05"
                 />
-            <Space
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidev2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.95"
+                />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:background="@drawable/white_background"
+                android:id="@+id/fondo_titulo">
+
+                <LinearLayout
+                    android:id="@+id/header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:src="@drawable/baseline_account_circle_24"
+                        app:tint="@color/cyan"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/welcome_user"
+                        android:layout_marginLeft="10dp"
+                        android:textSize="30sp"
+                        android:textStyle="bold"/>
+
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"/>
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/rounded_view"
+                        app:tint="@color/cyan"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/heroes_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:text="@string/heroes"
+                    android:textStyle="bold"
+                    android:textSize="30sp"
+                    android:layout_gravity="center_horizontal|top"/>
+
+            </FrameLayout>
+
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/heroes_recycleview"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                />
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/rounded_view"
-                app:tint="@color/cyan"
+                app:layout_constraintTop_toBottomOf="@id/fondo_titulo"
+                app:layout_constraintStart_toEndOf="@id/guidev1"
+                app:layout_constraintEnd_toStartOf="@id/guidev2"
+                app:layout_constraintBottom_toBottomOf="parent"
                 />
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
+    </ScrollView>
 
-        <TextView
-            android:layout_marginTop="10dp"
-            android:id="@+id/heroes_title"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/heroes"
-            app:layout_constraintStart_toEndOf="@+id/guidev1"
-            app:layout_constraintEnd_toStartOf="@id/guidev2"
-            app:layout_constraintTop_toBottomOf="@id/header"
-            app:layout_constraintBottom_toTopOf="@id/heroes_recycleview"
-            android:textStyle="bold"
-            android:textSize="30sp"
-            />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/heroes_recycleview"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/heroes_title"
-            app:layout_constraintStart_toEndOf="@id/guidev1"
-            app:layout_constraintEnd_toStartOf="@id/guidev2"
-            app:layout_constraintBottom_toBottomOf="parent"
-            />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</ScrollView>
+</FrameLayout>
