@@ -21,8 +21,8 @@ La aplicación utiliza las siguientes dependencias principales:
 - Kotlin Coroutines: Para la programación asincrónica y el manejo de flujos de datos reactivos.
 
 
-# Inicio de la Aplicación
+## Inicio de la Aplicación
 Al iniciar la aplicación, se insertan datos de ejemplo en la base de datos desde una clase estática. Esto garantiza que la aplicación tenga datos para mostrar al usuario desde el principio.
 
-# Interfaz de Usuario
+## Interfaz de Usuario
 La interfaz de usuario utiliza un RecyclerView para mostrar la lista de héroes. Cada elemento de la lista muestra el nombre del héroe y su imagen. Al hacer clic en un héroe, se muestra más información sobre él.
